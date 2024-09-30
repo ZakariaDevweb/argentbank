@@ -14,7 +14,7 @@ const Header = () => {
           </NavLink>
           <div>
             <NavLink to="/profil" className="link" activeclassname="active"><i className="fa fa-user-circle sign-in-icon"></i>pseudo</NavLink>
-            <NavLink to="/sign-in" onClick={logOut} className="link" activeclassname="active">
+            <NavLink to="/sign-in"  className="link" activeclassname="active">
               <i className="fa fa-sign-out sign-in-icon"></i> Sign Out</NavLink>
           </div>
         </nav>
