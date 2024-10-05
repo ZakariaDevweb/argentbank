@@ -1,27 +1,51 @@
-import logo from '../../assets/img/argentBankLogo.png';
-import '../../assets/styles/styles.css';
+import React from "react";
 import { NavLink } from 'react-router-dom';
+import logo from '../../assets/img/argentBankLogo.png';
 
-const Header = () => {
+import stockData from "../../services/stockData";
+import { useDispatch, useSelector } from 'react-redux';
 
+import { signOut } from '../../redux/slice';
+
+export default function Nav() {
+
+  const { firstName, lastName, isAuthenticated } = useSelector((state) => state.user);
+  const getAuth = stockData.getAuthentication();
+
+  const dispatch = useDispatch();
+
+  const logOut = async (event) => {
+    dispatch(signOut());
+    stockData.clearData();
+  }
+
+  if (!isAuthenticated) {
     return (
-
-      
-      <header className="header">
-        <nav className="main-nav">
+      <div className="header">
+        <div className="header-body">
           <NavLink to="/">
             <img className="main-nav-logo-image" src={logo} alt="Logo" />
           </NavLink>
-          <div>
-            <NavLink to="/profil" className="link" activeclassname="active"><i className="fa fa-user-circle sign-in-icon"></i>pseudo</NavLink>
-            <NavLink to="/sign-in"  className="link" activeclassname="active">
-              <i className="fa fa-sign-out sign-in-icon"></i> Sign Out</NavLink>
-          </div>
-        </nav>
-      </header>
+          <nav className="nav">
+            <NavLink to="/profile" className="link" activeclassname="active"><i className="fa fa-user-circle sign-in-icon"></i> User</NavLink>
+            <NavLink to="/sign-in" onClick={logOut} className="link" activeclassname="active">
+              <i className="fa fa-sign-out sign-in-icon"></i> Sign In</NavLink>
+          </nav>
+        </div>
+      </div>
+    )
+  } else {
+    return (
+      <div className="header">
+        <div className="header-body">
+          <NavLink to="/">
+            <img className="main-nav-logo-image" src={logo} alt="Logo" />
+          </NavLink>
+          <nav className="nav">
+            <NavLink to="/profile" className="link" activeclassname="active">{firstName}</NavLink>
+            <NavLink to="/sign-in" onClick={logOut} className="link" activeclassname="active"><i className="fa fa-user-circle sign-in-icon"></i>Sign Out</NavLink></nav>
+        </div>
+      </div>
     );
   }
-
-
-
-export default Header;
+}

@@ -7,30 +7,30 @@ export const userSlice = createSlice({
         userName: null,
         firstName: null,
         lastName: null,
+        nickname: null
     },
     reducers: {
 
-        logIn: (state, action) => {
+        signIn: (state, action) => {
             state.isAuthenticated = true;
             state.userName = action.payload.email;
             state.firstName = action.payload.firstName;
             state.lastName = action.payload.lastName;
+            state.nickname = action.payload.nickname;
         },
-        logOut: (state) => {
+        signOut: (state) => {
             state.isAuthenticated = false;
             state.userName = null;
             state.firstName = null;
             state.lastName = null;
+            state.nickname = null;
         },
-        setFirstName: (state, action) => {
-            state.firstName = action.payload;
-        },
-        setLastName: (state, action) => {
-            state.lastName = action.payload;
+        setNickname: (state, action) => {
+            state.nickname = action.payload;
         },
 
     },
 });
 
-export const { logIn, logOut, setFirstName, setLastName } = userSlice.actions;
+export const { signIn, signOut, setNickname } = userSlice.actions;
 export default userSlice.reducer;

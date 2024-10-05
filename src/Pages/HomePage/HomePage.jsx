@@ -5,6 +5,9 @@ import Hero from '../../Components/Hero/Hero';
 import icon1 from '../../assets/img/icon-chat.png';
 import icon2 from '../../assets/img/icon-money.png';
 import icon3 from '../../assets/img/icon-security.png';
+
+
+
 const HomePage = () => {
     const featuresData = [
         {

@@ -1,13 +1,14 @@
-const stockedData = {
+const stockData = {
     clearData() {
         localStorage.clear();
     },
-    setAuthentication(email, firstName, lastName, token) {
+    setAuthentication(email, firstName, lastName, nickName, token) {
         const userData = {
             isAuthenticated: true,
             email,
             firstName,
             lastName,
+            nickName,
             token
         };
 
@@ -25,10 +26,11 @@ const stockedData = {
             email: null,
             firstName: null,
             lastName: null,
+            nickName: null,
             token: null
         };
     }
 };
 
 
-export default stockedData;
+export default stockData;
